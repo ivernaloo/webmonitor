@@ -1,3 +1,13 @@
+# Chrome Headless
+
+- manifest.js : 获取maifest文件
+
+
+## Problem
+- 使用之前需要先启动Chrome Headless才可以。
+- 这里需要一个自启动的Chrome Headless
+
+
 ## Using headless Chrome as an automated screenshot tool
 
 This repo contains an example implementation of using headless Chrome as an automated screenshot tool on linux, which is a common use case for PhantomJS.

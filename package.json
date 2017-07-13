@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon monitor.js --verbose",
+    "screen": "node index.js --url='https://sec-cdn.static.xiaomi.net/secStatic/groups/miui-sec/rennaiqian/7_4/staging11/productlist.html?#index'"
   },
   "author": "",
   "license": "ISC",
