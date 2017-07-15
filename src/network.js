@@ -5,7 +5,7 @@ CDP((client) => {
   const {Network, Page} = client;
   // setup handlers
   Network.requestWillBeSent((params) => {
-    console.log("url --- : " ,params.request.url); // 打印所有的请求
+    console.log("url --- : " ,params.request.url); // 
   });
   Page.loadEventFired(() => {
     client.close();
