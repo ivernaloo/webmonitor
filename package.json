@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon monitor.js --verbose",
+    "dev": "nodemon index.js",
     "screen": "node index.js --url='https://sec-cdn.static.xiaomi.net/secStatic/groups/miui-sec/rennaiqian/7_4/staging11/productlist.html?#index'"
   },
   "author": "",
@@ -12,7 +12,11 @@
   "dependencies": {
     "chrome-remote-interface": "^0.23.0",
     "delay": "^2.0.0",
+    "lowdb": "^0.16.2",
     "minimist": "^1.2.0",
     "mz": "^2.6.0"
+  },
+  "devDependencies": {
+    "chrome-launcher": "^0.3.2"
   }
 }
