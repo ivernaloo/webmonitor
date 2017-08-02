@@ -45,51 +45,49 @@ function monitor(chrome) {
         * */
 
         var r =
-            db.get('network').value().reduce(function(m,o){
-                var o_url = o.content.entry.url;
+                db.get('network').value().reduce(function (m, o) {
+                    var o_url = o.content.entry.url;
                     obj = m.get(o_url);
 
-                return obj ? m.set(o_url, {
-                    name     : name,
-                    otherprop: [...new Set(obj.otherprop.concat(o.otherprop))]
-                })
-                    : m.set(name, o); 
-                
-            },new Map());
+                    return obj ?
+                        Object.assign(m, {"content": {"entry": {"timestamp": [...new Set([...m.content.entry.timestamp, o.content.entry.timestamp])]}}}) :
+                        o
+
+                }, new Map());
         console.log("results : ", r);
-/*
-        var result = [...db.get('network').reduce(function (m, o) {
-                var name = o.name.toLowerCase();
-                obj = m.get(name);
-                return obj ? m.set(name, {
-                    name     : name,
-                    otherprop: [...new Set(obj.otherprop.concat(o.otherprop))]
-                })
-                    : m.set(name, o);
-            }, new Map())
-            .values()];
+        /*
+                var result = [...db.get('network').reduce(function (m, o) {
+                        var name = o.name.toLowerCase();
+                        obj = m.get(name);
+                        return obj ? m.set(name, {
+                            name     : name,
+                            otherprop: [...new Set(obj.otherprop.concat(o.otherprop))]
+                        })
+                            : m.set(name, o);
+                    }, new Map())
+                    .values()];
 
-        */
-/*        Log.entryAdded((params) => {
-            console.log("网络加载问题^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-            console.log("entryAdded --- : ", params); // 打印所有的请求
-            console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
-            var result;
-
-
+                */
+        /*        Log.entryAdded((params) => {
+                    console.log("网络加载问题^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+                    console.log("entryAdded --- : ", params); // 打印所有的请求
+                    console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+                    var result;
 
 
 
-            console.log("Results : " ,result);
 
 
-            // .push({
-            //     id : uuid(),
-            //     content : params,
-            //     time : new Date().getTime()
-            // }).write();
+                    console.log("Results : " ,result);
 
-        })*/
+
+                    // .push({
+                    //     id : uuid(),
+                    //     content : params,
+                    //     time : new Date().getTime()
+                    // }).write();
+
+                })*/
 
         /*        Debugger.scriptParsed((params) => {
                     console.log("************************************")
