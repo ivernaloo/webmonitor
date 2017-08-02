@@ -39,10 +39,37 @@ function monitor(chrome) {
         //     }).write();
         // });
         console.log("....d")
-        console.log("results : ",db.get('network').value())
-        db.get('network').reduce(function (m, o) {
-            console.log(".. ...................: ",m, o )
-        });
+
+        /*
+        * db.get('network').value() is array collection
+        * */
+
+        var r =
+            db.get('network').value().reduce(function(m,o){
+                var o_url = o.content.entry.url;
+                    obj = m.get(o_url);
+
+                return obj ? m.set(o_url, {
+                    name     : name,
+                    otherprop: [...new Set(obj.otherprop.concat(o.otherprop))]
+                })
+                    : m.set(name, o); 
+                
+            },new Map());
+        console.log("results : ", r);
+/*
+        var result = [...db.get('network').reduce(function (m, o) {
+                var name = o.name.toLowerCase();
+                obj = m.get(name);
+                return obj ? m.set(name, {
+                    name     : name,
+                    otherprop: [...new Set(obj.otherprop.concat(o.otherprop))]
+                })
+                    : m.set(name, o);
+            }, new Map())
+            .values()];
+
+        */
 /*        Log.entryAdded((params) => {
             console.log("网络加载问题^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
             console.log("entryAdded --- : ", params); // 打印所有的请求
@@ -51,16 +78,7 @@ function monitor(chrome) {
 
 
 
-            // result = [...db.get('network').reduce(function (m, o) {
-            //         var name = o.name.toLowerCase();
-            //         obj = m.get(name);
-            //         return obj ? m.set(name, {
-            //             name     : name,
-            //             otherprop: [...new Set(obj.otherprop.concat(o.otherprop))]
-            //         })
-            //             : m.set(name, o);
-            //     }, new Map())
-            //     .values()];
+
 
             console.log("Results : " ,result);
 
