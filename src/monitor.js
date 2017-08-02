@@ -41,60 +41,62 @@ function monitor(chrome) {
         console.log("....d")
 
         /*
-        * db.get('network').value() is array collection
-        * */
-
+         * db.get('network').value() is array collection
+         * */
+        // remove the repeat contents
         var r =
-                db.get('network').value().reduce(function (m, o) {
-                    var o_url = o.content.entry.url;
-                    obj = m.get(o_url);
+            db.get('network').value().reduce(function (m, o) {
+                var o_url = o.content.entry.url,
+                    o_test = o.content.entry.text,
+                    _array;
 
-                    return obj ?
-                        Object.assign(m, {"content": {"entry": {"timestamp": [...new Set([...m.content.entry.timestamp, o.content.entry.timestamp])]}}}) :
-                        o
-
-                }, new Map());
-        console.log("results : ", r);
+                if (!!m.content) {
+                    _array = Array.from(m.content.entry.timestamp);
+                    m.content.entry.timestamp = [...new Set([..._array, o.content.entry.timestamp])];
+                }
+                return !!m.content && (o_url == m.content.entry.url || o_url == m.content.entry.text ) ?
+                    m :
+                    o;
+            }, new Map());
+        // should write a array,but not a object
+        // db.set("network", Array.from(r))
+        //     .write();
         /*
-                var result = [...db.get('network').reduce(function (m, o) {
-                        var name = o.name.toLowerCase();
-                        obj = m.get(name);
-                        return obj ? m.set(name, {
-                            name     : name,
-                            otherprop: [...new Set(obj.otherprop.concat(o.otherprop))]
-                        })
-                            : m.set(name, o);
-                    }, new Map())
-                    .values()];
+         var result = [...db.get('network').reduce(function (m, o) {
+         var name = o.name.toLowerCase();
+         obj = m.get(name);
+         return obj ? m.set(name, {
+         name     : name,
+         otherprop: [...new Set(obj.otherprop.concat(o.otherprop))]
+         })
+         : m.set(name, o);
+         }, new Map())
+         .values()];
 
-                */
+         */
         /*        Log.entryAdded((params) => {
-                    console.log("网络加载问题^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-                    console.log("entryAdded --- : ", params); // 打印所有的请求
-                    console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
-                    var result;
+         console.log("网络加载问题^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+         console.log("entryAdded --- : ", params); // 打印所有的请求
+         console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+         var result;
 
 
 
 
 
-                    console.log("Results : " ,result);
+         console.log("Results : " ,result);
 
 
-                    // .push({
-                    //     id : uuid(),
-                    //     content : params,
-                    //     time : new Date().getTime()
-                    // }).write();
 
-                })*/
+
+         })*/
 
         /*        Debugger.scriptParsed((params) => {
-                    console.log("************************************")
+         console.log("************************************")
 
-                    console.log("scriptParsed --- : " ,params);
-                    console.log("************************************")
-                });*/
+         console.log("scriptParsed --- : " ,params);
+         console.log("************************************")
+         });*/
 
         // Runtime.exceptionThrown((params) => {
         //     console.log("脚本错误++++++++++++++++++++++++++++++");
@@ -107,15 +109,15 @@ function monitor(chrome) {
         //     }).write();
         // });
         /*        Runtime.exceptionRevoked((params) => {
-                    console.log("!!!!!!脚本错误++++++++++++++++++++++++++++++");
-                    console.log("exceptionRevoked --- : " ,params);
-                    console.log("+++++++++++++++++++++++++++++++++++++")
-                });
-                Debugger.scriptFailedToParse((params) => {
-                    console.log("-------------------------------------")
-                    console.log("scriptFailedToParse --- : " ,params);
-                    console.log("-------------------------------------")
-                });*/
+         console.log("!!!!!!脚本错误++++++++++++++++++++++++++++++");
+         console.log("exceptionRevoked --- : " ,params);
+         console.log("+++++++++++++++++++++++++++++++++++++")
+         });
+         Debugger.scriptFailedToParse((params) => {
+         console.log("-------------------------------------")
+         console.log("scriptFailedToParse --- : " ,params);
+         console.log("-------------------------------------")
+         });*/
 
         // enable events then start!
         Promise.all([
@@ -135,10 +137,10 @@ function monitor(chrome) {
 
 function launchChrome(headless = true) {
     return chromeLauncher.launch({
-        port       : 9222, // Uncomment to force a specific port of your choice.
+        port: 9222, // Uncomment to force a specific port of your choice.
         chromeFlags: [
             '--disable-gpu',
-            headless ? '--headless' : ''
+            '--headless'
         ]
     });
 }
