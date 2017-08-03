@@ -19,12 +19,72 @@
         "source": "network",
         "level": "error",
         "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "timestamp": 1501769262559.36,
+        "url": "http://x.zhoup.com/res/lib/lightgallery/js/lightgaller.min.js",
+        "networkRequestId": "6344.611"
+      }
+    },
+    {
+      "entry": {
+        "source": "network",
+        "level": "error",
+        "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "timestamp": 1501761115673.83,
+        "url": "http://x.zhoup.com/res/lib/lightgallery/js/lightgaller.min.js",
+        "networkRequestId": "6344.585"
+      }
+    },
+    {
+      "entry": {
+        "source": "network",
+        "level": "error",
+        "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "timestamp": 1501769262559.36,
+        "url": "http://x.zhoup.com/res/lib/lightgallery/js/lightgaller.min.js",
+        "networkRequestId": "6344.611"
+      }
+    },
+    {
+      "entry": {
+        "source": "network",
+        "level": "error",
+        "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
         "timestamp": [
           1501760083420.22,
           1501761115673.83
         ],
         "url": "http://x.zhoup.com/res/lib/lightgallery/js/lightgaller.min.js",
         "networkRequestId": "6344.351"
+      }
+    },
+    {
+      "entry": {
+        "source": "network",
+        "level": "error",
+        "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "timestamp": 1501769262559.36,
+        "url": "http://x.zhoup.com/res/lib/lightgallery/js/lightgaller.min.js",
+        "networkRequestId": "6344.611"
+      }
+    },
+    {
+      "entry": {
+        "source": "network",
+        "level": "error",
+        "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "timestamp": 1501761115673.83,
+        "url": "http://x.zhoup.com/res/lib/lightgallery/js/lightgaller.min.js",
+        "networkRequestId": "6344.585"
+      }
+    },
+    {
+      "entry": {
+        "source": "network",
+        "level": "error",
+        "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "timestamp": 1501769262559.36,
+        "url": "http://x.zhoup.com/res/lib/lightgallery/js/lightgaller.min.js",
+        "networkRequestId": "6344.611"
       }
     }
   ],
@@ -49,6 +109,108 @@
           "objectId": "{\"injectedScriptId\":23,\"id\":1}"
         },
         "executionContextId": 23
+      }
+    },
+    {
+      "timestamp": 1501769262560.884,
+      "exceptionDetails": {
+        "exceptionId": 24,
+        "text": "Uncaught",
+        "lineNumber": 145,
+        "columnNumber": 20,
+        "scriptId": "331",
+        "url": "http://x.zhoup.com/fail.html",
+        "stackTrace": {
+          "callFrames": []
+        },
+        "exception": {
+          "type": "object",
+          "subtype": "error",
+          "className": "SyntaxError",
+          "description": "SyntaxError: Invalid or unexpected token",
+          "objectId": "{\"injectedScriptId\":25,\"id\":1}",
+          "preview": {
+            "type": "object",
+            "subtype": "error",
+            "description": "SyntaxError: Invalid or unexpected token",
+            "overflow": false,
+            "properties": [
+              {
+                "name": "stack",
+                "type": "string",
+                "value": "SyntaxError: Invalid or unexpected token"
+              },
+              {
+                "name": "message",
+                "type": "string",
+                "value": "Invalid or unexpected token"
+              }
+            ]
+          }
+        },
+        "executionContextId": 25
+      }
+    },
+    {
+      "timestamp": 1501761115674.446,
+      "exceptionDetails": {
+        "exceptionId": 23,
+        "text": "Uncaught",
+        "lineNumber": 145,
+        "columnNumber": 20,
+        "scriptId": "213",
+        "url": "http://x.zhoup.com/fail.html",
+        "stackTrace": {
+          "callFrames": []
+        },
+        "exception": {
+          "type": "object",
+          "subtype": "error",
+          "className": "SyntaxError",
+          "description": "SyntaxError: Invalid or unexpected token",
+          "objectId": "{\"injectedScriptId\":24,\"id\":1}"
+        },
+        "executionContextId": 24
+      }
+    },
+    {
+      "timestamp": 1501769262560.884,
+      "exceptionDetails": {
+        "exceptionId": 24,
+        "text": "Uncaught",
+        "lineNumber": 145,
+        "columnNumber": 20,
+        "scriptId": "331",
+        "url": "http://x.zhoup.com/fail.html",
+        "stackTrace": {
+          "callFrames": []
+        },
+        "exception": {
+          "type": "object",
+          "subtype": "error",
+          "className": "SyntaxError",
+          "description": "SyntaxError: Invalid or unexpected token",
+          "objectId": "{\"injectedScriptId\":25,\"id\":1}",
+          "preview": {
+            "type": "object",
+            "subtype": "error",
+            "description": "SyntaxError: Invalid or unexpected token",
+            "overflow": false,
+            "properties": [
+              {
+                "name": "stack",
+                "type": "string",
+                "value": "SyntaxError: Invalid or unexpected token"
+              },
+              {
+                "name": "message",
+                "type": "string",
+                "value": "Invalid or unexpected token"
+              }
+            ]
+          }
+        },
+        "executionContextId": 25
       }
     }
   ]

@@ -27,28 +27,42 @@ function monitor(chrome) {
         });
 
         /*
-        * network 网络加载问题数据的记录
-        * */
+         * network 网络加载问题数据的记录
+         * */
         Log.entryAdded((params) => {
             // console.log("entryAdded --- : ", params); // 打印所有的请求
             combineAndStorage('network', params);
         });
 
         /*
-        * middleware for filter and storage method
-        * @collection {string} collection name
-        * @params {object} object item needed saved
-        * */
-        function combineAndStorage(collection, params){
+         * middleware for filter and storage method
+         * @collection {string} collection name
+         * @params {object} object item needed saved
+         * */
+        function combineAndStorage(collection, params) {
             var v = db.get(collection).value(),
                 r = [];
 
+            function compare(collection, o, params) {
+                var dict = {
+                    "network": ['["entry"]["url"]', '["entry"]["text"]'],
+                    "script": ['["exceptionDetails"]["url"]', '["exceptionDetails"]["lineNumber"]', '["exceptionDetails"]["columnNumber"]'],
+                    "message": ['["entry"]["url"]', '["entry"]["text"]']
+                };
+
+                return
+                dict[collection].map(function (item) {
+                    // compare key item in o and params
+                    return new Function('return ' + "this" + item).bind(o)() == new Function('return ' + "this" + item).bind(params)()
+                }).every(function (elem) {
+                    return elem;
+                });
+            }
+
             if (v.length > 0) {
                 r = db.get(collection).value().reduce(function (m, o) {
-                    var o_url  = o.entry.url,
-                        o_text = o.entry.text;
-                    return o_url == params.entry.url && o_text == params.entry.text ?
-                        [...m.slice(0,-1), combine(o, params)] :
+                    return compare(collection, o, params) ?
+                        [...m.slice(0, -1), combine(o, params)] :
                         [...m, o, params];
                 }, []);
             } else {
@@ -67,8 +81,9 @@ function monitor(chrome) {
 
                 object.entry.timestamp = _a;
                 return object;
-            }    
+            }
         }
+
         /*        Debugger.scriptParsed((params) => {
          console.log("************************************")
 
@@ -109,7 +124,7 @@ function monitor(chrome) {
 
 function launchChrome(headless = true) {
     return chromeLauncher.launch({
-        port       : 9222, // Uncomment to force a specific port of your choice.
+        port: 9222, // Uncomment to force a specific port of your choice.
         chromeFlags: [
             '--disable-gpu',
             '--headless'
