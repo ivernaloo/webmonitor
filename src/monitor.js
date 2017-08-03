@@ -38,26 +38,12 @@ function monitor(chrome) {
         //         time   : new Date().getTime()
         //     }).write();
         // });
-        console.log("....d")
 
         /*
          * db.get('network').value() is array collection
          * */
         // remove the repeat contents
-        var r =
-            db.get('network').value().reduce(function (m, o) {
-                var o_url = o.content.entry.url,
-                    o_test = o.content.entry.text,
-                    _array;
 
-                if (!!m.content) {
-                    _array = Array.from(m.content.entry.timestamp);
-                    m.content.entry.timestamp = [...new Set([..._array, o.content.entry.timestamp])];
-                }
-                return !!m.content && (o_url == m.content.entry.url || o_url == m.content.entry.text ) ?
-                    m :
-                    o;
-            }, new Map());
         // should write a array,but not a object
         // db.set("network", Array.from(r))
         //     .write();
@@ -74,22 +60,52 @@ function monitor(chrome) {
          .values()];
 
          */
-        /*        Log.entryAdded((params) => {
-         console.log("网络加载问题^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-         console.log("entryAdded --- : ", params); // 打印所有的请求
-         console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
-         var result;
+        Log.entryAdded((params) => {
+            console.log("网络加载问题^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+            // console.log("entryAdded --- : ", params); // 打印所有的请求
+            console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
 
 
+            var v = db.get('network').value(),
+                r = [];
+
+            if (v.length > 0) {
+
+                r = db.get('network').value().reduce(function (m, o) {
+                    // console.log("............");
+                    // console.log("m xxxxx : ", m)
+                    // console.log("o xxxxx : ", o)
+                    // console.log("params xxxxx : ", params)
 
 
+                    var o_url  = o.entry.url,
+                        o_text = o.entry.text;
+                    return o_url == params.entry.url && o_text == params.entry.text ?
+                        [...m.slice(0,-1), combine(o, params)] :
+                        [...m, params];
+                }, []);
+            } else {
 
-         console.log("Results : " ,result);
+                r.push(params)
+            }
 
 
+            console.log("results ???????????????????????: ", r.length,r,r[0].entry.timestamp);
+            db.set('network', r).write();
+            function combine(object, params) {
+                console.log("combine xxxx")
+                var _a = object.entry.timestamp,
+                    _p = params.entry.timestamp;
+                if (_a instanceof Array) {
+                    _a = [_a[0], Math.max(_a.pop(), _p)]
+                } else {
+                    _a = [_a, _p];
+                }
 
-
-         })*/
+                object.entry.timestamp = _a;
+                return object;
+            }
+        });
 
         /*        Debugger.scriptParsed((params) => {
          console.log("************************************")
@@ -137,7 +153,7 @@ function monitor(chrome) {
 
 function launchChrome(headless = true) {
     return chromeLauncher.launch({
-        port: 9222, // Uncomment to force a specific port of your choice.
+        port       : 9222, // Uncomment to force a specific port of your choice.
         chromeFlags: [
             '--disable-gpu',
             '--headless'
