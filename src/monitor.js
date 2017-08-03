@@ -22,16 +22,9 @@ function monitor(chrome) {
         const {Network, Page, Console, Runtime, Debugger, Log} = client;
         // setup handlers
 
-        // Console.messageAdded((params) => {
-        //     console.log("消息输出%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-        //     console.log("messageAdded --- : ", params); // 打印所有的请求
-        //     console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-        //     db.get('message').push({
-        //         id     : uuid(),
-        //         content: params,
-        //         time   : new Date().getTime()
-        //     }).write();
-        // });
+        Console.messageAdded((params) => {
+            combineAndStorage('message', params);
+        });
 
         /*
         * network 网络加载问题数据的记录
@@ -83,16 +76,10 @@ function monitor(chrome) {
          console.log("************************************")
          });*/
 
-        // Runtime.exceptionThrown((params) => {
-        //     console.log("脚本错误++++++++++++++++++++++++++++++");
-        //     console.log("exceptionThrown --- : ", params);
-        //     console.log("+++++++++++++++++++++++++++++++++++++")
-        //     db.get('script').push({
-        //         id     : uuid(),
-        //         content: params,
-        //         time   : new Date().getTime()
-        //     }).write();
-        // });
+        Runtime.exceptionThrown((params) => {
+            combineAndStorage('script', params);
+
+        });
         /*        Runtime.exceptionRevoked((params) => {
          console.log("!!!!!!脚本错误++++++++++++++++++++++++++++++");
          console.log("exceptionRevoked --- : " ,params);
