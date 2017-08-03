@@ -21,12 +21,35 @@
         "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
         "timestamp": [
           1501760083420.22,
-          1501760844193.99
+          1501761115673.83
         ],
         "url": "http://x.zhoup.com/res/lib/lightgallery/js/lightgaller.min.js",
         "networkRequestId": "6344.351"
       }
     }
   ],
-  "script": []
+  "script": [
+    {
+      "timestamp": 1501760844195.074,
+      "exceptionDetails": {
+        "exceptionId": 22,
+        "text": "Uncaught",
+        "lineNumber": 145,
+        "columnNumber": 20,
+        "scriptId": "205",
+        "url": "http://x.zhoup.com/fail.html",
+        "stackTrace": {
+          "callFrames": []
+        },
+        "exception": {
+          "type": "object",
+          "subtype": "error",
+          "className": "SyntaxError",
+          "description": "SyntaxError: Invalid or unexpected token",
+          "objectId": "{\"injectedScriptId\":23,\"id\":1}"
+        },
+        "executionContextId": 23
+      }
+    }
+  ]
 }
