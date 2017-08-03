@@ -5,13 +5,26 @@
       "entry": {
         "source": "network",
         "level": "error",
-        "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "text": "F2ailed to load resource: the server responded with a status of 404 (Not Found)",
         "timestamp": [
           1501757401145.86,
-          1501757451019.37
+          1501759980970.13
+        ],
+        "url": "htt2p://x.zhoup.com/res/lib/lightgallery/js/lightgaller.min.js",
+        "networkRequestId": "45692.1416"
+      }
+    },
+    {
+      "entry": {
+        "source": "network",
+        "level": "error",
+        "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "timestamp": [
+          1501760083420.22,
+          1501760844193.99
         ],
         "url": "http://x.zhoup.com/res/lib/lightgallery/js/lightgaller.min.js",
-        "networkRequestId": "45692.1416"
+        "networkRequestId": "6344.351"
       }
     }
   ],

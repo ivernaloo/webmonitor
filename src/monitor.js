@@ -6,27 +6,21 @@ const db = low('db/db.json');
 const uuid = require('uuid');
 
 // Set some defaults if your JSON file is empty
-
 exports.start = function () {
     // cleanChromePID(); // clean the chrome process
     launchChrome().then(chrome => {
         console.log(`Chrome debuggable on port: ${chrome.port}`);
-
         //entry function
         monitor(chrome);
         // chrome.kill();
     });
 };
 
-
 function monitor(chrome) {
-
-
     CDP((client) => {
         // extract domains
         const {Network, Page, Console, Runtime, Debugger, Log} = client;
         // setup handlers
-
 
         // Console.messageAdded((params) => {
         //     console.log("消息输出%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
@@ -40,60 +34,36 @@ function monitor(chrome) {
         // });
 
         /*
-         * db.get('network').value() is array collection
-         * */
-        // remove the repeat contents
-
-        // should write a array,but not a object
-        // db.set("network", Array.from(r))
-        //     .write();
-        /*
-         var result = [...db.get('network').reduce(function (m, o) {
-         var name = o.name.toLowerCase();
-         obj = m.get(name);
-         return obj ? m.set(name, {
-         name     : name,
-         otherprop: [...new Set(obj.otherprop.concat(o.otherprop))]
-         })
-         : m.set(name, o);
-         }, new Map())
-         .values()];
-
-         */
+        * network 网络加载问题数据的记录
+        * */
         Log.entryAdded((params) => {
-            console.log("网络加载问题^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
             // console.log("entryAdded --- : ", params); // 打印所有的请求
-            console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+            combineAndStorage('network', params);
+        });
 
-
-            var v = db.get('network').value(),
+        /*
+        * middleware for filter and storage method
+        * @collection {string} collection name
+        * @params {object} object item needed saved
+        * */
+        function combineAndStorage(collection, params){
+            var v = db.get(collection).value(),
                 r = [];
 
             if (v.length > 0) {
-
-                r = db.get('network').value().reduce(function (m, o) {
-                    // console.log("............");
-                    // console.log("m xxxxx : ", m)
-                    // console.log("o xxxxx : ", o)
-                    // console.log("params xxxxx : ", params)
-
-
+                r = db.get(collection).value().reduce(function (m, o) {
                     var o_url  = o.entry.url,
                         o_text = o.entry.text;
                     return o_url == params.entry.url && o_text == params.entry.text ?
                         [...m.slice(0,-1), combine(o, params)] :
-                        [...m, params];
+                        [...m, o, params];
                 }, []);
             } else {
-
                 r.push(params)
             }
 
-
-            console.log("results ???????????????????????: ", r.length,r,r[0].entry.timestamp);
-            db.set('network', r).write();
+            db.set(collection, r).write();
             function combine(object, params) {
-                console.log("combine xxxx")
                 var _a = object.entry.timestamp,
                     _p = params.entry.timestamp;
                 if (_a instanceof Array) {
@@ -104,9 +74,8 @@ function monitor(chrome) {
 
                 object.entry.timestamp = _a;
                 return object;
-            }
-        });
-
+            }    
+        }
         /*        Debugger.scriptParsed((params) => {
          console.log("************************************")
 
