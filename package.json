@@ -4,13 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js",
+    "dev": "set DEBUG=m-* DEBUG_DEPTH=10&&nodemon index.js",
     "screen": "node index.js --url='https://sec-cdn.static.xiaomi.net/secStatic/groups/miui-sec/rennaiqian/7_4/staging11/productlist.html?#index'"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "chrome-remote-interface": "^0.23.0",
+    "debug": "^2.6.8",
     "delay": "^2.0.0",
     "lowdb": "^0.16.2",
     "minimist": "^1.2.0",

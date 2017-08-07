@@ -4,6 +4,9 @@ const exec = require('child_process').exec;
 const low = require('lowdb');
 const db = low('db/db.json');
 const uuid = require('uuid');
+const debug = require('debug');
+const log = debug("m-monitor");
+
 
 // Set some defaults if your JSON file is empty
 exports.start = function () {
@@ -16,7 +19,10 @@ exports.start = function () {
     });
 };
 
+
+
 function monitor(chrome) {
+
     CDP((client) => {
         // extract domains
         const {Network, Page, Console, Runtime, Debugger, Log} = client;
@@ -39,19 +45,44 @@ function monitor(chrome) {
          * @collection {string} collection name
          * @params {object} object item needed saved
          * */
+
         function combineAndStorage(collection, params) {
             var v = db.get(collection).value(),
                 r = [];
 
+            function combine(collection, object, params) {
+                log("......................")
+                log("display : ","collection : ", collection, "object : ",object, "params : ",params);
+
+                let dict = {
+                    "network": ['.entry.timestamp'],
+                    "script" : ['.timestamp'],
+                    "message": ['']
+                };
+
+                let _a = eval("object" + dict[collection]),
+                    _p = eval("params" + dict[collection]);
+                if (_a instanceof Array) {
+                    _a = [_a[0], Math.max(_a.pop(), _p)]
+                } else {
+                    _a = [_a, _p];
+                }
+
+                new Function('return object' + dict[collection] + "=" + _a).bind(_a)()
+                log("results  ::: ", eval("object" + dict[collection]));
+                log("results  ::: ", _a);
+
+                return object;
+            }
+
             function compare(collection, o, params) {
-                var dict = {
+                let dict = {
                     "network": ['["entry"]["url"]', '["entry"]["text"]'],
-                    "script": ['["exceptionDetails"]["url"]', '["exceptionDetails"]["lineNumber"]', '["exceptionDetails"]["columnNumber"]'],
+                    "script" : ['["exceptionDetails"]["url"]', '["exceptionDetails"]["lineNumber"]', '["exceptionDetails"]["columnNumber"]'],
                     "message": ['["entry"]["url"]', '["entry"]["text"]']
                 };
 
-                return
-                dict[collection].map(function (item) {
+                return dict[collection].map(function (item) {
                     // compare key item in o and params
                     return new Function('return ' + "this" + item).bind(o)() == new Function('return ' + "this" + item).bind(params)()
                 }).every(function (elem) {
@@ -62,7 +93,7 @@ function monitor(chrome) {
             if (v.length > 0) {
                 r = db.get(collection).value().reduce(function (m, o) {
                     return compare(collection, o, params) ?
-                        [...m.slice(0, -1), combine(o, params)] :
+                        [...m.slice(0, -1), combine(collection, o, params)] :
                         [...m, o, params];
                 }, []);
             } else {
@@ -70,41 +101,11 @@ function monitor(chrome) {
             }
 
             db.set(collection, r).write();
-            function combine(object, params) {
-                var _a = object.entry.timestamp,
-                    _p = params.entry.timestamp;
-                if (_a instanceof Array) {
-                    _a = [_a[0], Math.max(_a.pop(), _p)]
-                } else {
-                    _a = [_a, _p];
-                }
-
-                object.entry.timestamp = _a;
-                return object;
-            }
         }
-
-        /*        Debugger.scriptParsed((params) => {
-         console.log("************************************")
-
-         console.log("scriptParsed --- : " ,params);
-         console.log("************************************")
-         });*/
 
         Runtime.exceptionThrown((params) => {
             combineAndStorage('script', params);
-
         });
-        /*        Runtime.exceptionRevoked((params) => {
-         console.log("!!!!!!脚本错误++++++++++++++++++++++++++++++");
-         console.log("exceptionRevoked --- : " ,params);
-         console.log("+++++++++++++++++++++++++++++++++++++")
-         });
-         Debugger.scriptFailedToParse((params) => {
-         console.log("-------------------------------------")
-         console.log("scriptFailedToParse --- : " ,params);
-         console.log("-------------------------------------")
-         });*/
 
         // enable events then start!
         Promise.all([
@@ -124,7 +125,7 @@ function monitor(chrome) {
 
 function launchChrome(headless = true) {
     return chromeLauncher.launch({
-        port: 9222, // Uncomment to force a specific port of your choice.
+        port       : 9222, // Uncomment to force a specific port of your choice.
         chromeFlags: [
             '--disable-gpu',
             '--headless'
@@ -144,3 +145,24 @@ function cleanChromePID() {
         console.log(`stderr: ${stderr}`);
     });
 }
+
+/*        
+Debugger.scriptParsed((params) => {
+    console.log("************************************")
+    
+    console.log("scriptParsed --- : " ,params);
+    console.log("************************************")
+});
+*/
+
+
+/*        Runtime.exceptionRevoked((params) => {
+ console.log("!!!!!!脚本错误++++++++++++++++++++++++++++++");
+ console.log("exceptionRevoked --- : " ,params);
+ console.log("+++++++++++++++++++++++++++++++++++++")
+ });
+ Debugger.scriptFailedToParse((params) => {
+ console.log("-------------------------------------")
+ console.log("scriptFailedToParse --- : " ,params);
+ console.log("-------------------------------------")
+ });*/
