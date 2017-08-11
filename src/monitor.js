@@ -50,30 +50,48 @@ function monitor(chrome) {
             var v = db.get(collection).value(),
                 r = [];
 
+            // combine time
+            // 1 and 2 => [1,2]
+            // [1,2] and 3 = > [1,3]
             function combine(collection, object, params) {
-                log("......................")
-                log("display : ","collection : ", collection, "object : ",object, "params : ",params);
-
                 let dict = {
-                    "network": ['.entry.timestamp'],
-                    "script" : ['.timestamp'],
-                    "message": ['']
+                    "network": 'entry.timestamp',
+                    "script" : 'timestamp',
+                    "message": ''
                 };
 
-                let _a = eval("object" + dict[collection]),
-                    _p = eval("params" + dict[collection]);
+                let _a = pathResolve(object , dict[collection]),
+                    _p = pathResolve(params , dict[collection]);
+
+                log("path : ", "object _a : ", _a, " params _p : ", _p);
                 if (_a instanceof Array) {
+                    log("array : ", true);
                     _a = [_a[0], Math.max(_a.pop(), _p)]
                 } else {
+                    log("array : ", "not a array and string combine");
                     _a = [_a, _p];
                 }
 
-                new Function('return object' + dict[collection] + "=" + _a).bind(_a)()
-                log("results  ::: ", eval("object" + dict[collection]));
-                log("results  ::: ", _a);
+                log("_a  : ",_a);
+                log("origin object  : ");
+                // eval("object" + dict[collection] + "=" + _a);
+                // new Function('return object' + dict[collection] + "=" + _a).bind(_a)()
+                // log("results  ::: ", eval("object" + dict[collection]));
 
                 return object;
             }
+
+            // reference : https://stackoverflow.com/questions/6491463/accessing-nested-javascript-objects-with-string-key
+            // parse object and string path, such as ".path.subpath"
+            // could use curry refactor
+            function pathResolve(object, path){
+                log("pathResolve object : ", object);
+                log("pathResolve path : ", path);
+                return path.split('.')
+                    .reduce((o, p)=> o ? o[p] : undefined, object)
+            }
+
+
 
             function compare(collection, o, params) {
                 let dict = {
