@@ -73,7 +73,9 @@ function monitor(chrome) {
                 }
 
                 log("_a  : ",_a);
-                log("origin object  : ");
+                pathResolveSet(object, dict[collection], _a);
+
+                log("object results : ", object)
                 // eval("object" + dict[collection] + "=" + _a);
                 // new Function('return object' + dict[collection] + "=" + _a).bind(_a)()
                 // log("results  ::: ", eval("object" + dict[collection]));
@@ -85,13 +87,18 @@ function monitor(chrome) {
             // parse object and string path, such as ".path.subpath"
             // could use curry refactor
             function pathResolve(object, path){
-                log("pathResolve object : ", object);
-                log("pathResolve path : ", path);
                 return path.split('.')
                     .reduce((o, p)=> o ? o[p] : undefined, object)
             }
 
+            function pathResolveSet(object, path, value){
+                var i;
+                path = path.split('.');
+                for (i = 0; i < path.length - 1; i++)
+                    object = object[path[i]];
 
+                object[path[i]] = value;
+            }
 
             function compare(collection, o, params) {
                 let dict = {
