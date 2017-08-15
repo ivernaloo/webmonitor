@@ -63,22 +63,13 @@ function monitor(chrome) {
                 let _a = pathResolve(object , dict[collection]),
                     _p = pathResolve(params , dict[collection]);
 
-                log("path : ", "object _a : ", _a, " params _p : ", _p);
                 if (_a instanceof Array) {
-                    log("array : ", true);
                     _a = [_a[0], Math.max(_a.pop(), _p)]
                 } else {
-                    log("array : ", "not a array and string combine");
                     _a = [_a, _p];
                 }
 
-                log("_a  : ",_a);
                 pathResolveSet(object, dict[collection], _a);
-
-                log("object results : ", object)
-                // eval("object" + dict[collection] + "=" + _a);
-                // new Function('return object' + dict[collection] + "=" + _a).bind(_a)()
-                // log("results  ::: ", eval("object" + dict[collection]));
 
                 return object;
             }

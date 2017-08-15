@@ -11,6 +11,6 @@ log("INDEX");
 child_process.fork("./src/monitor.js"); // async process for monitor the data
 
 // @todo read
-
+log("list :  ", read.list("network"));
 
 // @todo web page visualization
