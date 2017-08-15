@@ -9,7 +9,7 @@ const log = debug("m-monitor");
 
 
 // Set some defaults if your JSON file is empty
-exports.start = function () {
+function start() {
     // cleanChromePID(); // clean the chrome process
     launchChrome().then(chrome => {
         console.log(`Chrome debuggable on port: ${chrome.port}`);
@@ -91,6 +91,7 @@ function monitor(chrome) {
                     .reduce((o, p)=> o ? o[p] : undefined, object)
             }
 
+            // reference : https://stackoverflow.com/questions/13719593/how-to-set-object-property-of-object-property-of-given-its-string-name-in-ja
             function pathResolveSet(object, path, value){
                 var i;
                 path = path.split('.');
@@ -170,6 +171,8 @@ function cleanChromePID() {
         console.log(`stderr: ${stderr}`);
     });
 }
+
+start();
 
 /*        
 Debugger.scriptParsed((params) => {
