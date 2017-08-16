@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebMonitor</title>
+    <link rel="stylesheet" href="res/index.css">
+</head>
+<body>
+<div id="ssp">
+    <main data-reactroot="" id="ssp-main" class="main" role="main">
+        <section class="section-hero"><h1 class="section-headline">System Status</h1></section>
+        <div class="wrapper">
+            <div class="lights-container">
+                <section class="section-legend" role="group" aria-label="legend">
+                    <ul class="light-content light-image">
+                        <li>
+                            <div class="light-available"></div>
+                            <span role="text"><span class="a11y"><!-- react-text: 812 -->Green Circle:
+                                <!-- /react-text --><!-- react-text: 813 --> <!-- /react-text --></span>
+                                <!-- react-text: 814 -->Available<!-- /react-text --></span></li>
+                    </ul>
+                </section>
+                <section class="section-lights">
+                    <table id="ssp-lights-table" role="presentation">
+                        <tbody>
+                        <tr>
+                            <td id="info-tooltip-wrapper-0" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 825 -->App Store
+                                        <!-- /react-text --><!-- react-text: 826 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                            <td id="info-tooltip-wrapper-1" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 834 -->iCloud Backup
+                                        <!-- /react-text --><!-- react-text: 835 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                            <td id="info-tooltip-wrapper-2" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 843 -->iTunes U
+                                        <!-- /react-text --><!-- react-text: 844 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="info-tooltip-wrapper-3" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 853 -->Apple ID
+                                        <!-- /react-text --><!-- react-text: 854 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                            <td id="info-tooltip-wrapper-4" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 862 -->iCloud Bookmarks &amp; Tabs
+                                        <!-- /react-text --><!-- react-text: 863 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                            <td id="info-tooltip-wrapper-5" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 871 -->iWork for iCloud
+                                        <!-- /react-text --><!-- react-text: 872 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="info-tooltip-wrapper-6" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 881 -->Apple Music
+                                        <!-- /react-text --><!-- react-text: 882 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                            <td id="info-tooltip-wrapper-7" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 890 -->iCloud Calendar
+                                        <!-- /react-text --><!-- react-text: 891 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                            <td id="info-tooltip-wrapper-8" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 899 -->Mac App Store
+                                        <!-- /react-text --><!-- react-text: 900 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="info-tooltip-wrapper-9" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 909 -->Apple Online Store
+                                        <!-- /react-text --><!-- react-text: 910 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                            <td id="info-tooltip-wrapper-10" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 918 -->iCloud Contacts
+                                        <!-- /react-text --><!-- react-text: 919 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                            <td id="info-tooltip-wrapper-11" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 927 -->macOS Software Update
+                                        <!-- /react-text --><!-- react-text: 928 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="info-tooltip-wrapper-12" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 937 -->Apple Pay
+                                        <!-- /react-text --><!-- react-text: 938 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                            <td id="info-tooltip-wrapper-13" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 946 -->iCloud Drive
+                                        <!-- /react-text --><!-- react-text: 947 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                            <td id="info-tooltip-wrapper-14" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 955 -->Mail Drop
+                                        <!-- /react-text --><!-- react-text: 956 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="info-tooltip-wrapper-15" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 965 -->Apple School Manager
+                                        <!-- /react-text --><!-- react-text: 966 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                            <td id="info-tooltip-wrapper-16" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 974 -->iCloud Keychain
+                                        <!-- /react-text --><!-- react-text: 975 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                            <td id="info-tooltip-wrapper-17" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 983 -->Maps Display
+                                        <!-- /react-text --><!-- react-text: 984 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="info-tooltip-wrapper-18" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 993 -->Apple TV
+                                        <!-- /react-text --><!-- react-text: 994 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                            <td id="info-tooltip-wrapper-19" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 1002 -->iCloud Mail
+                                        <!-- /react-text --><!-- react-text: 1003 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                            <td id="info-tooltip-wrapper-20" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 1011 -->Maps Routing &amp; Navigation
+                                        <!-- /react-text --><!-- react-text: 1012 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="info-tooltip-wrapper-21" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 1021 -->Back to My Mac
+                                        <!-- /react-text --><!-- react-text: 1022 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                            <td id="info-tooltip-wrapper-22" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 1030 -->iCloud Notes
+                                        <!-- /react-text --><!-- react-text: 1031 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                            <td id="info-tooltip-wrapper-23" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 1039 -->Maps Search
+                                        <!-- /react-text --><!-- react-text: 1040 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="info-tooltip-wrapper-24" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 1049 -->Beats 1
+                                        <!-- /react-text --><!-- react-text: 1050 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                            <td id="info-tooltip-wrapper-25" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 1058 -->iCloud Reminders
+                                        <!-- /react-text --><!-- react-text: 1059 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                            <td id="info-tooltip-wrapper-26" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 1067 -->Maps Traffic
+                                        <!-- /react-text --><!-- react-text: 1068 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="info-tooltip-wrapper-27" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 1077 -->Dictation
+                                        <!-- /react-text --><!-- react-text: 1078 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                            <td id="info-tooltip-wrapper-28" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 1086 -->iCloud Storage Upgrades
+                                        <!-- /react-text --><!-- react-text: 1087 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                            <td id="info-tooltip-wrapper-29" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 1095 -->Photo Print Products
+                                        <!-- /react-text --><!-- react-text: 1096 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="info-tooltip-wrapper-30" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 1105 -->Documents in the Cloud
+                                        <!-- /react-text --><!-- react-text: 1106 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                            <td id="info-tooltip-wrapper-31" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 1114 -->iCloud Web Apps (iCloud.com)
+                                        <!-- /react-text --><!-- react-text: 1115 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                            <td id="info-tooltip-wrapper-32" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 1123 -->Photos
+                                        <!-- /react-text --><!-- react-text: 1124 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="info-tooltip-wrapper-33" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 1133 -->FaceTime
+                                        <!-- /react-text --><!-- react-text: 1134 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                            <td id="info-tooltip-wrapper-34" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 1142 -->iMessage
+                                        <!-- /react-text --><!-- react-text: 1143 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                            <td id="info-tooltip-wrapper-35" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 1151 -->Radio
+                                        <!-- /react-text --><!-- react-text: 1152 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="info-tooltip-wrapper-36" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 1161 -->Find My Friends
+                                        <!-- /react-text --><!-- react-text: 1162 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                            <td id="info-tooltip-wrapper-37" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 1170 -->iMovie Theater
+                                        <!-- /react-text --><!-- react-text: 1171 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                            <td id="info-tooltip-wrapper-38" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 1179 -->Siri
+                                        <!-- /react-text --><!-- react-text: 1180 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="info-tooltip-wrapper-39" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 1189 -->Find My iPhone
+                                        <!-- /react-text --><!-- react-text: 1190 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                            <td id="info-tooltip-wrapper-40" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 1198 -->iOS Device Activation
+                                        <!-- /react-text --><!-- react-text: 1199 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                            <td id="info-tooltip-wrapper-41" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 1207 -->SMS Text Forwarding
+                                        <!-- /react-text --><!-- react-text: 1208 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="info-tooltip-wrapper-42" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 1217 -->Game Center
+                                        <!-- /react-text --><!-- react-text: 1218 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                            <td id="info-tooltip-wrapper-43" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 1226 -->iPhone Calls to iPad and Mac
+                                        <!-- /react-text --><!-- react-text: 1227 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                            <td id="info-tooltip-wrapper-44" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 1235 -->Spotlight suggestions
+                                        <!-- /react-text --><!-- react-text: 1236 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="info-tooltip-wrapper-45" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 1245 -->iBooks Store
+                                        <!-- /react-text --><!-- react-text: 1246 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                            <td id="info-tooltip-wrapper-46" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 1254 -->iTunes in the Cloud
+                                        <!-- /react-text --><!-- react-text: 1255 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                            <td id="info-tooltip-wrapper-47" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 1263 -->Volume Purchase Program
+                                        <!-- /react-text --><!-- react-text: 1264 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="info-tooltip-wrapper-48" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 1273 -->iChat
+                                        <!-- /react-text --><!-- react-text: 1274 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                            <td id="info-tooltip-wrapper-49" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 1282 -->iTunes Match
+                                        <!-- /react-text --><!-- react-text: 1283 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                            <td id="info-tooltip-wrapper-50" class="info-tooltip-wrapper"></td>
+                        </tr>
+                        <tr>
+                            <td id="info-tooltip-wrapper-51" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 1293 -->iCloud Account &amp; Sign In
+                                        <!-- /react-text --><!-- react-text: 1294 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                            <td id="info-tooltip-wrapper-52" class="info-tooltip-wrapper">
+                                <div class="light-container">
+                                    <div class="light-content light-image">
+                                        <div class="light-available"></div>
+                                    </div>
+                                    <div class="light-content light-name"><span role="text"><!-- react-text: 1302 -->iTunes Store
+                                        <!-- /react-text --><!-- react-text: 1303 --> <!-- /react-text --><span
+                                                class="a11y">: available</span></span></div>
+                                </div>
+                            </td>
+                            <td id="info-tooltip-wrapper-53" class="info-tooltip-wrapper"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

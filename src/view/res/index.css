@@ -1,0 +1,158 @@
+body {
+    color: #333333;
+    font-style: normal;
+}
+#ac-gn-viewport-emitter {
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    visibility: hidden;
+    z-index: -1;
+    x-content: "large"
+}
+
+#ac-gn-viewport-emitter::before {
+    content: "large"
+}
+
+@media only screen and (max-width: 1023px) {
+    #ac-gn-viewport-emitter {
+        x-content: "medium"
+    }
+
+    #ac-gn-viewport-emitter::before {
+        content: "medium"
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    #ac-gn-viewport-emitter {
+        x-content: "small"
+    }
+
+    #ac-gn-viewport-emitter::before {
+        content: "small"
+    }
+}
+
+@media only screen and (max-width: 419px) {
+    #ac-gn-viewport-emitter {
+        x-content: "xsmall"
+    }
+
+    #ac-gn-viewport-emitter::before {
+        content: "xsmall"
+    }
+}
+
+section[class^="section-"] {
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden; }
+
+
+.main {
+    margin-left: auto;
+    margin-right: auto;
+    width: 980px; }
+@media only screen and (max-width: 1068px) {
+    .main {
+        width: 692px; } }
+@media only screen and (max-width: 735px) {
+    .main {
+        width: 87.5%; } }
+
+section[class^="section-"] {
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.section-legend {
+    margin-bottom: 1em;
+    text-align: right;
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    color: #888;
+}
+
+.light-available {
+    background-color: #28C940;
+    background-repeat: no-repeat;
+    border-radius: 15px;
+    margin-right: 5px;
+    height: 18px;
+    width: 19px;
+    background-size: 19px 18px;
+    vertical-align: middle;
+    display: inline-block;
+    position: relative;
+}
+.section-lights .light-content {
+    display: table-cell;
+    vertical-align: top;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.section-lights {
+    font-size: 17px;
+    line-height: 1.8;
+    font-weight: 400;
+    letter-spacing: -0.021em;
+    font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    margin-bottom: 1.5em;
+    color: #666;
+}
+
+.section-hero .section-headline {
+    text-align: center;
+    line-height: 1.04167;
+    font-weight: 500;
+    letter-spacing: 0.006em;
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    font-size: 40px;
+}
+.section-lights td:not(:first-child):not(:last-child) {
+    border-right: 1px solid #d3d3d3;
+    border-left: 1px solid #d3d3d3;
+}
+.section-lights td {
+    width: 33%;
+    padding: 5px 10px;
+    border-top: 1px solid #d3d3d3;
+    border-bottom: 1px solid #d3d3d3;
+    vertical-align: top;
+}
+.a11y {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px 1px 1px 1px);
+    clip: rect(1px, 1px, 1px, 1px);
+    -webkit-clip-path: inset(0px 0px 99.9% 99.9%);
+    clip-path: inset(0px 0px 99.9% 99.9%);
+}
+
+
+section[class^="section-"] {
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+.section-lights table {
+    width: 100%;
+    border-color: grey;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
