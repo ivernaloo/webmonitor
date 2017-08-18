@@ -1,6 +1,8 @@
 var dom = document.getElementById("container");
 var myChart = echarts.init(dom);
 var app = {};
+var $ = document.querySelector.bind(document);
+var CONSOLE = $("#console");
 option = null;
 function getVirtulData(year) {
     year = year || '2017';
@@ -26,10 +28,11 @@ option = {
     visualMap: {
         min: 0,
         max: 1000,
+        type: 'piecewise',
         splitNumber: 5,
         color: ['#d94e5d','#eac736','#50a3ba'],
         textStyle: {
-            color: '#fff'
+            color: '#000'
         },
         orient: 'horizontal',
         left: 'center',
@@ -50,7 +53,13 @@ option = {
     }]
 
 };
-;
+
+myChart.on("click", function(e){
+  console.log("....",e.data[0]);
+  console.log("....",CONSOLE);
+    CONSOLE.innerHTML = e.data[0]
+});
+
 if (option && typeof option === "object") {
     myChart.setOption(option, false);
 }
