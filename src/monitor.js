@@ -1,16 +1,15 @@
 const CDP = require('chrome-remote-interface');
 const chromeLauncher = require('chrome-launcher');
-const exec = require('child_process').exec;
+const _exec = require('child_process').exec;
 const low = require('lowdb');
 const db = low('db/db.json');
 const uuid = require('uuid');
 const debug = require('debug');
 const log = debug("m-monitor");
 
-
 // Set some defaults if your JSON file is empty
 function start() {
-    // cleanChromePID(); // clean the chrome process
+    cleanChromePID(); // clean the chrome process
     launchChrome().then(chrome => {
         console.log(`Chrome debuggable on port: ${chrome.port}`);
         //entry function
@@ -20,15 +19,16 @@ function start() {
 };
 
 
-
 function monitor(chrome) {
-
+     log("start monitor ");
     CDP((client) => {
+        log("CDP running");
         // extract domains
         const {Network, Page, Console, Runtime, Debugger, Log} = client;
         // setup handlers
 
         Console.messageAdded((params) => {
+            log("messageAdded");
             combineAndStorage('message', params);
         });
 
@@ -36,7 +36,7 @@ function monitor(chrome) {
          * network 网络加载问题数据的记录
          * */
         Log.entryAdded((params) => {
-            // console.log("entryAdded --- : ", params); // 打印所有的请求
+            log("entryAdded"); // 打印所有的请求
             combineAndStorage('network', params);
         });
 
@@ -64,11 +64,12 @@ function monitor(chrome) {
                     _p = pathResolve(params , dict[collection]);
 
                 if (_a instanceof Array) {
-                    _a = [_a[0], Math.max(_a.pop(), _p)]
+                    _a = [_a[0], Math.max(_a.pop(), _p)] // [1,2] and 3 = > [1,3]
                 } else {
-                    _a = [_a, _p];
+                    _a = [_a, _p]; // 1 and 2 => [1,2]
                 }
 
+                log("return out from logic");
                 pathResolveSet(object, dict[collection], _a);
 
                 return object;
@@ -100,6 +101,7 @@ function monitor(chrome) {
                 };
 
                 return dict[collection].map(function (item) {
+                    log("item : ", item)
                     // compare key item in o and params
                     return new Function('return ' + "this" + item).bind(o)() == new Function('return ' + "this" + item).bind(params)()
                 }).every(function (elem) {
@@ -134,6 +136,7 @@ function monitor(chrome) {
             Runtime.enable()
         ]).then((client) => {
             Page.navigate({url: "http://x.zhoup.com/fail.html"});
+            log("navigate to web")
         }).catch((err) => {
             console.error(err);
         });
@@ -151,7 +154,7 @@ function launchChrome(headless = true) {
 }
 
 function cleanChromePID() {
-    exec("ps aux | grep -i chrome  | awk {'print $2'} | xargs kill -9", (err, stdout, stderr) => {
+    _exec("ps aux | grep -i chrome  | awk {'print $2'} | xargs kill -9", (err, stdout, stderr) => {
         console.log("clean pid");
         if (err) {
             // node couldn't execute the command
@@ -163,7 +166,8 @@ function cleanChromePID() {
     });
 }
 
-start();
+log("monitor start");
+
 
 /*        
 Debugger.scriptParsed((params) => {

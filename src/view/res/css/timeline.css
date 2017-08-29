@@ -3,3 +3,8 @@ html, body { height : 100%; }
 #head {
     height: 300px;
 }
+
+#container, .main {
+    width: 692px;
+    margin: 30px auto;
+}

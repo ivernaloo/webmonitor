@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "set DEBUG=m-* DEBUG_DEPTH=10 && nodemon index.js",
+    "dev": "set DEBUG=m-* && nodemon index.js",
+    "monitor": "set DEBUG=m-* && nodemon src\\monitor.js",
     "server": "browser-sync start  --server src/view/ --files src/view/",
     "screen": "node index.js --url='https://sec-cdn.static.xiaomi.net/secStatic/groups/miui-sec/rennaiqian/7_4/staging11/productlist.html?#index'"
   },
