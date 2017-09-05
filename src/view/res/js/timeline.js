@@ -16,6 +16,7 @@ function getVirtulData(year) {
             Math.floor(Math.random() * 1000)
         ]);
     }
+    console.info("data : ", data);
     return data;
 }
 
