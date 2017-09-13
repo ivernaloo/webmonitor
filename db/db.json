@@ -1,17 +1,13 @@
 {
   "message": [],
-  "network": [
-    {
-      "entry": {
-        "source": "network",
-        "level": "error",
-        "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
-        "timestamp": [],
-        "url": "http://x.zhoup.com/res/lib/lightgallery/js/lightgaller.min.js",
-        "networkRequestId": "85256.11"
-      },
-      "id": "ByP5Oy2tW"
-    }
+  "network": [],
+  "script": [],
+  "count-message": [],
+  "count-network": [
+    [
+      "9/13/2017",
+      10
+    ]
   ],
-  "script": []
+  "count-script": []
 }
