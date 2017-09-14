@@ -51,8 +51,6 @@ function mergeLogs(collectionName, params) {
         r.push(params)
     }
 
-        log("rrrrrrrr : ",r, r[0].entry.timestamp);
-
     db.set(collectionName, r).write();
 }
 
