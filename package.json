@@ -23,6 +23,7 @@
   "devDependencies": {
     "browser-sync": "^2.18.13",
     "chrome-launcher": "^0.3.2",
+    "moment": "^2.18.1",
     "node-sass": "^4.5.3",
     "shortid": "^2.2.8"
   }

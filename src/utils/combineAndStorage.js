@@ -16,44 +16,47 @@ const DAY = 24 * 60 * 1000;
 const moment = require('moment');
 // const id = require("shortid");
 
-log("start");
-
 /*
 * @param collectionName {String}
 * @param params {Object} collect information from chromeheadless
 * */
 exports.load = function (collectionName, params) {
-
-        collection,
-        log = debug("m-utils-load"),
-        r   = [] // array list for store filtered data
-        ;
-
-
+    mergeLogs(collectionName, params);
     convertTimelineData(collectionName, params);
 };
 
 /*
-* @todo merge origin timestamp
+* merge same error log together
 * */
-function mergeLogs() {
-    var v   = db.get(collectionName).value(); // storage collection list
+function mergeLogs(collectionName, params) {
+    var v = db.get(collectionName).value(), // storage collection list
+        r = [], // array list for store filtered data
+        log = debug("m-mergelogs");
+
     if (v.length > 0) {
+        /*
+        * reduce实际就是前一个和后一个进行的操作
+        * m : current item
+        * o : next item
+        * [] : initial array
+        * */
         r = v.reduce(function (m, o) {
-            return compare(collection, o, params) ?
-                [...m.slice(0, -1), combine(collection, o, params)] :
+            // compare check the same err log
+            return compare(collectionName, o, params) ?
+                // combine the same timestamp
+                [...m.slice(0, -1), combine(collectionName, o, params)] :
                 [...m, o, params];
         }, []);
     } else {
         r.push(params)
     }
 
-    db.set(collection, r).write();
+        log("rrrrrrrr : ",r, r[0].entry.timestamp);
 
+    db.set(collectionName, r).write();
 }
 
 /*
-    * @todo build formated data
     * such as :
     * network : [[date:number] .... ]
     * scripts : [[date:number] .... ]
@@ -68,11 +71,9 @@ function convertTimelineData(collectionName, params) {
     // load "count-" _ collectionName
     collection = db.get("count-" + collectionName).value();
 
-    log("collection : ", collection);
     // updateOrInsert
     // v is json data
     if (collection.length > 0) {
-        log("record exist");
         collection.map(function (x) {
             if (x[0] == date) {
                 ++x[1];
@@ -98,42 +99,48 @@ function convertTimelineData(collectionName, params) {
 * @param params {Object} collect information from chromeheadless
 * */
 function combine(collectionName, object, params) {
-    let log = debug("m-combine");
     let dict = {
         "network": 'entry.timestamp',
         "script" : 'timestamp',
         "message": ''
     };
 
-    let _a = pathResolve(object, dict[collectionName]),
-        _p = pathResolve(params, dict[collectionName]); // probably, return single number or array
-
+    let _a = pathResolve(object , dict[collectionName]),
+        _p = pathResolve(params , dict[collectionName]);
 
     if (_a instanceof Array) {
-        log("max combine", _p - _a.pop() > DAY);
-        // @todo change to index storage, such as {date: data}
-        // @todo change to moment support
-        // @todo where lowdb support link
-        // _a maybe : xx , [xx,xx], [[xxx,xx],[xx,xx]], [[xxx,xxx],xx]
-        _p./*
-        if( _a.pop() instanceof  Array ){
-            // compare the last time
-
-        } else {
-
-        }
-        */
-            _a = [_a[0], Math.max(_a.pop(), _p)] // [1,2] and 3 = > [1,3]
+        _a = [_a[0], Math.max(_a.pop(), _p)] // [1,2] and 3 = > [1,3]
     } else {
-        log("direct combine")
         _a = [_a, _p]; // 1 and 2 => [1,2]
     }
 
-    log(_a, _p);
-    log("return out from logic");
     pathResolveSet(object, dict[collectionName], _a);
 
     return object;
+}
+
+/*
+* check the same logs
+* @param collectionName {String} Collection name
+* @param o {object} previous item
+* @param params {params} current item
+* */
+function compare(collectionName, o, params) {
+    let dict = {
+        "network": ['["entry"]["url"]', '["entry"]["text"]'],
+        "script" : ['["exceptionDetails"]["url"]', '["exceptionDetails"]["lineNumber"]', '["exceptionDetails"]["columnNumber"]'],
+        "message": ['["entry"]["url"]', '["entry"]["text"]']
+    };
+
+    // iterate all items in collectionName
+    return dict[collectionName].map(function (item) {
+
+        // compare key item in o and params
+        // o["entry"]["url"] ?= ["xxx"]["xxx"]
+        return new Function('return ' + "this" + item).bind(o)() == new Function('return ' + "this" + item).bind(params)()
+    }).every(function (elem) {
+        return elem; // check every item equals
+    });
 }
 
 // reference : https://stackoverflow.com/questions/6491463/accessing-nested-javascript-objects-with-string-key
@@ -152,28 +159,4 @@ function pathResolveSet(object, path, value) {
         object = object[path[i]];
 
     object[path[i]] = value;
-}
-
-
-/*
-* @param collectionName {String} Collection name
-* @param o {object} previous item
-* @param params {params} current item
-* */
-function compare(collectionName, o, params) {
-    let dict = {
-        "network": ['["entry"]["url"]', '["entry"]["text"]'],
-        "script" : ['["exceptionDetails"]["url"]', '["exceptionDetails"]["lineNumber"]', '["exceptionDetails"]["columnNumber"]'],
-        "message": ['["entry"]["url"]', '["entry"]["text"]']
-    };
-
-    // iterate all items
-    return dict[collectionName].map(function (item) {
-
-        // compare key item in o and params
-        // o["entry"]["url"] ?= ["xxx"]["xxx"]
-        return new Function('return ' + "this" + item).bind(o)() == new Function('return ' + "this" + item).bind(params)()
-    }).every(function (elem) {
-        return elem; // check every item equals
-    });
 }
