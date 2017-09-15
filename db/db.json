@@ -8,7 +8,7 @@
         "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
         "timestamp": [
           1504097877706.44,
-          1504097877726.44
+          1505445492954
         ],
         "url": "http://x.zhoup.com/res/lib/lightgallery/js/lightgaller.min.js",
         "networkRequestId": "85256.11"
@@ -21,6 +21,14 @@
     [
       "9/13/2017",
       10
+    ],
+    [
+      "9/14/2017",
+      14
+    ],
+    [
+      "9/15/2017",
+      5
     ]
   ],
   "count-script": []

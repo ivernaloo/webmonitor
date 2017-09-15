@@ -63,25 +63,47 @@ function mergeLogs(collectionName, params) {
     * */
 function convertTimelineData(collectionName, params) {
     var collection,
-        date = moment(params.timestamp).format('l');
+        log = debug("m-convertTimelineData"),
+        _exist = false,
+        date = moment(params.timestamp).format('l'); // date in the logs
 
     // read the data
     // load "count-" _ collectionName
     collection = db.get("count-" + collectionName).value();
 
-    // updateOrInsert
-    // v is json data
-    if (collection.length > 0) {
-        collection.map(function (x) {
-            if (x[0] == date) {
-                ++x[1];
-            }
-            return [x[0], x[1]]
-        });
-    } else {
-        // params.id = id.generate();
-        collection.push([date, 1])
+    /*
+    collection.map(function (x) {
+        log("x : ", x[0], date);
+        // have the same item
+        if (x[0] == date) {
+            ++x[1];
+            x = [x[0], x[1]];
+        // have not them same item
+        }
+        return x;
+    });
+    */
+    collection.forEach(function(k,i){
+        if (k[0] == date) {
+            ++k[1];
+            _exist = true;
+        }
+    });
+
+    /*
+    * have not them same item
+    * update when there are no record
+    * */
+    if (!_exist) {
+        collection.push([date,1]);
     }
+
+
+
+    // if no date store in the array
+
+
+
 
     // save
     db.set("count-" + collectionName, collection).write();

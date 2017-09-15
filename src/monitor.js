@@ -34,7 +34,7 @@ function monitor(chrome) {
             "source": "network",
             "level": "error",
             "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
-            "timestamp": 1504097877726.44,
+            "timestamp": new Date().getTime(),
             "url": "http://x.zhoup.com/res/lib/lightgallery/js/lightgaller.min.js",
             "networkRequestId": "85256.11"
         }
