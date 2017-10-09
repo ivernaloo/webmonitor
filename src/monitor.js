@@ -23,9 +23,8 @@ function start() {
         monitor(chrome);
         // chrome.kill();
     })
-    */;
-};
-
+    */
+}
 function monitor(chrome) {
     log("start monitor ");
     // fake logic, mcok for test
