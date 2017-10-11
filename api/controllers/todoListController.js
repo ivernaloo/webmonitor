@@ -1,16 +1,20 @@
 'use strict';
 
-let mongoose = require('mongoose'),
-    Task     = mongoose.model('Tasks');
+let debug = require("debug"),
+    mongoose = require('mongoose'),
+    Task     = mongoose.model('Tasks'),
+    log = debug("controller-test");
+
+log("....")
 
 exports.list_all_tasks = function (req, res) {
+    log("something");
     Task.find({}, function (err, task) {
         if (err)
             res.send(err);
         res.json(task);
     });
 };
-
 
 exports.create_a_task = function (req, res) {
     let new_task = new Task(req.body);

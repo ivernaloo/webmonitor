@@ -1,13 +1,14 @@
-var express = require('express'),
+let express = require('express'),
     app = express(),
+    debug = require("debug"),
     port = process.env.PORT || 80,
-    mongoose = require('mongoose'),
     Task = require('./api/models/todoListModel'), //created model loading here
-    bodyParser = require('body-parser');
+    bodyParser = require('body-parser'),
+    log = debug("api-entry");
 
-// mongoose instance connection url connection
-mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/Tododb');
+log("...log")
+// @todo remove the mongoose connect config
+// should add lowDB connect config
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
