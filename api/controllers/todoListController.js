@@ -3,9 +3,7 @@
 let debug = require("debug"),
     mongoose = require('mongoose'),
     Task     = mongoose.model('Tasks'),
-    log = debug("controller-test");
-
-log("....")
+    log = debug("api-controller");
 
 exports.list_all_tasks = function (req, res) {
     log("something");
