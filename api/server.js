@@ -2,7 +2,6 @@ let express = require('express'),
     app = express(),
     debug = require("debug"),
     port = process.env.PORT || 80,
-    Task = require('./api/models/todoListModel'), //created model loading here
     bodyParser = require('body-parser'),
     log = debug("api-entry");
 
@@ -13,7 +12,7 @@ log("...log")
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-let routes = require('./api/routes/todoListRoutes'); //importing route
+let routes = require('./routes/todoListRoutes'); //importing route
 routes(app); //register the route
 
 app.use(function(req, res){
