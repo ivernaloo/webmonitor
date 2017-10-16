@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "set DEBUG=m-* && nodemon index.js",
+    "start": "set DEBUG=m-* && nodemon index.js",
     "api": "set DEBUG=api-* && nodemon api\\server.js",
     "monitor": "set DEBUG=m-* && nodemon src\\monitor.js",
-    "server": "browser-sync start  --server src/view/ --files src/view/",
+    "web": "browser-sync start  --server src/view/ --files src/view/",
     "screen": "node index.js --url='https://sec-cdn.static.xiaomi.net/secStatic/groups/miui-sec/rennaiqian/7_4/staging11/productlist.html?#index'"
   },
   "author": "",
@@ -15,6 +15,7 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "chrome-remote-interface": "^0.23.0",
+    "concurrently": "^3.5.0",
     "debug": "^2.6.8",
     "delay": "^2.0.0",
     "express": "^4.15.5",
