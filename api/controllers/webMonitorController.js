@@ -7,5 +7,7 @@ const debug = require("debug"),
 
 log("start...")
 exports.list = function (req, res) {
-    res.json(db.get("network").value())
+    if (req.query.name) {
+        res.json(db.get(req.query.name).value())
+    }
 };
